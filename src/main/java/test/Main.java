@@ -1,21 +1,9 @@
 package test;
 
 import javafx.geometry.Point2D;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 
 /**
@@ -25,25 +13,25 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(" Hello world ");
         try {
-            Properties properties = new Properties();
-            properties.load(Files.newBufferedReader(Paths.get("conf.properties")));
-
-            String pathToTxt = properties.getProperty("pathToTxt");
-            String pathToImage = properties.getProperty("pathToImage");
-            System.out.println(pathToTxt);
-
-            CloseableHttpClient aDefault = HttpClients.createDefault();
-            CloseableHttpResponse execute = aDefault.execute(new HttpGet("http://google.com"));
-            try (BufferedReader x = new BufferedReader(new InputStreamReader(execute.getEntity().getContent()))) {
-                String line;
-                Path path = Paths.get(pathToImage);
-                path.toFile().mkdirs();
-                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path.resolve("google.html"))) {
-                    while ((line = x.readLine()) != null) {
-                        bufferedWriter.write(line);
-                    }
-                }
-            }
+//            Properties properties = new Properties();
+//            properties.load(Files.newBufferedReader(Paths.get("conf.properties")));
+//
+//            String pathToTxt = properties.getProperty("pathToTxt");
+//            String pathToImage = properties.getProperty("pathToImage");
+//            System.out.println(pathToTxt);
+//
+//            CloseableHttpClient aDefault = HttpClients.createDefault();
+//            CloseableHttpResponse execute = aDefault.execute(new HttpGet("http://google.com"));
+//            try (BufferedReader x = new BufferedReader(new InputStreamReader(execute.getEntity().getContent()))) {
+//                String line;
+//                Path path = Paths.get(pathToImage);
+//                path.toFile().mkdirs();
+//                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path.resolve("google.html"))) {
+//                    while ((line = x.readLine()) != null) {
+//                        bufferedWriter.write(line);
+//                    }
+//                }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
