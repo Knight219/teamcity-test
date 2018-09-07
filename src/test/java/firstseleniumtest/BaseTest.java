@@ -1,15 +1,14 @@
 package firstseleniumtest;
 
 
-import com.sun.xml.internal.ws.policy.AssertionSet;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +18,15 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     protected static WebDriver driver;
+
+    //    @AfterClass
+    public static void tearDown() {
+        WebElement menuUser = driver.findElement(By.cssSelector(".login-button__user"));
+        menuUser.click();
+        WebElement logoutButton = driver.findElement(By.id("login_logout"));
+        logoutButton.click();
+        driver.quit();
+    }
 
     @Before
     public void getDriver() {
@@ -40,15 +48,6 @@ public class BaseTest {
         WebElement profileUser = driver.findElement(By.cssSelector(".login-button__user"));
         String mailUser = profileUser.getText();
         Assert.assertEquals("natashyk221@ukr.net", mailUser);
-    }
-
-//    @AfterClass
-    public static void tearDown() {
-        WebElement menuUser = driver.findElement(By.cssSelector(".login-button__user"));
-        menuUser.click();
-        WebElement logoutButton = driver.findElement(By.id("login_logout"));
-        logoutButton.click();
-        driver.quit();
     }
 
     @Test
