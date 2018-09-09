@@ -3,6 +3,7 @@ package firstseleniumtest;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class BaseTest {
 
     @Before
     public void getDriver() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\dimaf\\Documents\\NatashasWork\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -38,6 +39,7 @@ public class BaseTest {
     }
 
     @Test
+    @Ignore
     public void login() {
         WebElement loginFild = driver.findElement(By.id("id-1"));
         loginFild.sendKeys("natashyk221@ukr.net");
